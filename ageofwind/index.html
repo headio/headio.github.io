@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+<meta content="target-densitydpi=device-dpi,width=640, user-scalable=no" name="viewport" id="viewport">
+<meta content="telephone=no" name="format-detection"/>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="css/page.css" rel="stylesheet" type="text/css" />
+<title>大航海时代</title>
+</head>
+
+<body>
+<div id="wrap">
+
+	<section class="page page1">
+		<div class="logo"></div>
+		<div class="bird1"></div>
+		<div class="bird2"></div>
+		<div class="kv"></div>
+		<div class="mask1"></div>
+		<div class="mask2"></div>
+		<div class="start"><b></b><i></i></div>
+		<div class="foot"></div>
+	</section>
+
+	<section class="page page2" id="game">
+		<div class="game-map"><b></b></div>
+		<div class="game-logo"></div>
+		<div class="game-tree"><b></b><b></b><b></b><b></b></div>
+		<div class="game-chest"></div>
+		<div class="game-city1"></div>
+		<div class="game-city2"></div>
+		<div id="game-ship"><b></b></div>
+		<div class="game-dice-hint"></div>
+		<div class="game-pop" id="game-pop-1"><span><b></b></span></div>
+		<div class="game-pop" id="game-pop-2"><span><b></b></span></div>
+		<div class="game-pop" id="game-pop-3"><span><b></b></span></div>
+		<div id="game-pop-dice">
+		    <div class="game-pop-dice-main">
+				<div class="game-pop-dice-body"><b></b></div>
+				<div class="game-pop-dice-sure"></div>
+		    </div>
+		</div>
+	</section>
+
+	<section class="page page3">
+		<div class="page3-con-Yes">
+			<p><em>1.</em>到达或经过第一个X点获得：<br />《大航海时代5》价值<span class="red">60元</span>新手礼包！</p>
+			<p><em>2.</em>到达或经过第二个X点获得：<br />《大航海时代5》价值<span class="red">88元</span>特权礼包精英券黄金！</p>
+			<div class="page3-btn-Yes"><b></b></div>
+		</div>
+		<div class="page3-con-No">
+			<div class="page3-btn-No" onclick="location.reload();"></div>
+		</div>
+	</section>
+	
+</div>
+<div class="pop" id="pop">
+	<div class="pop-con" id="intro">
+		<h3 class="pop-con-title">玩法说明：</h3>
+		<p class="pop-con-p"><em class="pop-con-em">1.</em>有3次摇骰子机会，<span class="pop-con-red">3次</span>都摇到数字<span class="pop-con-red">6</span>
+即可到达终点并获得终极大奖:价值<span class="pop-con-red">1600元</span>施华洛世奇水晶帆船一个！</p>
+		<p class="pop-con-p"><em class="pop-con-em">2.</em>到达或经过第二个X点获得:
+《大航海时代5》价值<span class="pop-con-red">88元</span>特权礼包精英
+券黄金！</p>
+		<p class="pop-con-p"><em class="pop-con-em">3.</em>到达或经过第一个X点获得:
+《大航海时代5》价值<span class="pop-con-red">60元</span>新手礼包！</p>
+		<div class="pop-con-redBtn">确定</div>
+	</div>
+	<div class="pop-con" id="getGift">
+		<h3 class="pop-con-title">领取奖励：</h3>
+		<p class="pop-con-p"><em class="pop-con-em">第一步：</em>输入手机号码作为领奖联系方式</p>
+		<input type="text" placeholder="输入手机号" class="pop-con-input" id="phone" />
+		<div class="pop-con-input-tips pop-con-red"></div>
+		<p class="pop-con-p"><em class="pop-con-em">第二步：</em>确定领取奖励，点击右上角分享朋友圈同时获得再玩一次的机会</p>
+		<div class="pop-con-redBtn" id="getGiftBtn">确定</div>
+	</div>
+	<div id="popShare"></div>
+</div>
+<script  src="js/jquery.js"></script>
+<script  src="js/game.js" type="text/javascript"></script>
+<script  src="js/page.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	page.init();
+	//调用
+	var share = page.share({
+		text : "分享文案",
+		 img : "images/share_icon.jpg"//分享图片的绝对地址
+	});
+	//音乐
+	//page.audio.bgmusic("audio/bgmusic.mp3");
+	page.audio.add("audio/win.mp3");
+	$(document).one("touchstart", function(){
+		page.audio.play();
+	});
+	
+	//输入手机号的弹层内的点击按钮点击事件
+	$('#getGiftBtn').click(function(){
+		if(page.phoneInputCorrect()){
+			/*
+			这里做ajax请求，将手机号和游戏结果提交给接口
+			手机号：page.phone
+			游戏结果：page.result
+			如果接口返回成功则调用分享弹层如下
+			page.pop.show('#popShare');
+			如果这个手机号之前已经玩过，则调用下面接口
+			page.phoneAlreadyExist();
+			*/
+		}else{
+			page.phoneError();
+		}
+	});
+});
+</script>
+</body>
+</html>
