@@ -8,45 +8,44 @@
 <meta name="description" content="" />
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <title>暴打老板</title>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/ult.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
 </head>
 
 <body>
 <div id="wrap">
 
-    <div class="page startpage" id="startpage">
-        <div class="head-color-bkg"></div>
+    <div class="page show bg1" id="start">
         <div class="beat-title normal" id="beat-title"></div>
-        <div class="redenvelope-title"></div>
-        <div class="boss normal"></div>
-        <div class="redenvelope"></div>
         <div class="beatbutton-wrap">
-            <div class="beat-effect normal"></div>
-            <div class="beat-button normal" id="beat-button"></div>
-        </div>
-        <div class="popup-wrap" id="popup-rule">
-            <div class="popup">
-                <div class="popupdesc rule-desc">
-                    <p>活动规则：
-                    <p>在规定时间内，点击屏幕痛打老板暴击值，达到68以上即可获取由《巴拉巴拉》送出的价值186的惊喜大礼!!
-                </div>
-                <div id="popup-rule-confirm"></div>
-            </div>
+            <a class="beat-button" id="beat-button"></a>
         </div>
     </div>
     
-    <div class="page" id="beatpage">
-        <div class="head-color-bkg beatpage-head"></div>
+    <div class="page bg1" id="boss1">
+        <div class="round"></div>
+        <div class="beat-text"></div>
         <div class="beattop">
-            <div class="top-score-wrap">
-                <div class="top-number" id="beat-score">0</div>
-            </div>
             <div class="top-time-wrap">
-                <div class="top-number" id="left-time">30</div>
+                <p>0.00</p>
+                <p>计&nbsp;&nbsp;时</p>
             </div>
-            <div id="restart-button"></div>
+            <div class="top-hp-wrap">
+                <div class="hp-total">
+                    <div class="hp"></div>
+                    <p>HP</p>
+                </div>
+                <span></span>
+            </div>
+        </div>
+        <div class="beat-count-wrap">
+            <div class="beat-count">
+                <span></span>
+                <span class="count"></span>
+            </div>
+            <div class="beat-count-line">
+                <!-- <div class="left"></div>
+                <div class="center"></div>
+                <div class="right"></div> -->
+            </div>
         </div>
         <div id="boss-body" class="boss-body boss-body-1"></div>
         <div id="boss-head" class="boss-head"></div>
@@ -61,19 +60,116 @@
             <div class="boss-beaten-hand-right"></div>
         </div>
         <div class="beaten-area"></div>
-        <div class="popup-wrap" id="popup-share">
-            <div class="popup">
-                <div class="popupdesc share-desc">
-                    <p>你居然打了<strong id="share-count">0</strong>下，多大仇多大怨！
-                    <p>恭喜你获得了价值<strong>880</strong>元的红包大礼，还不分享朋友圈拆红包？！
+    </div>
+
+    <div class="page bg2" id="boss2">
+        <div class="round"></div>
+        <div class="beat-text"></div>
+        <div class="beattop">
+            <div class="top-time-wrap">
+                <p>0.00</p>
+                <p>计&nbsp;&nbsp;时</p>
+            </div>
+            <div class="top-hp-wrap">
+                <div class="hp-total">
+                    <div class="hp"></div>
+                    <p>HP</p>
                 </div>
-                <input type="text" placeholder="请在此处填写您的手机号码" id="phone-number" />
-                <div class="share-redenvelope"></div>
-                <div id="popup-share-confirm"></div>
+                <span></span>
+            </div>
+        </div>
+        <div class="beat-count-wrap">
+            <div class="beat-count">
+                <span></span>
+                <span class="count"></span>
+            </div>
+            <div class="beat-count-line">
+                <!-- <div class="left"></div>
+                <div class="center"></div>
+                <div class="right"></div> -->
+            </div>
+        </div>
+        <div id="boss-body" class="boss-body boss-body-1"></div>
+        <div id="boss-head" class="boss-head"></div>
+        <div id="boss-beaten-left" class="boss-beaten-left">
+            <div class="boss-beaten-head-left"></div>
+            <!-- <div class="boss-beaten-effect-left"></div> -->
+            <div class="boss-beaten-hand-left"></div>
+        </div>
+        <div id="boss-beaten-right" class="boss-beaten-right">
+            <div class="boss-beaten-head-right"></div>
+            <!-- <div class="boss-beaten-effect-right"></div> -->
+            <div class="boss-beaten-hand-right"></div>
+        </div>
+        <div class="beaten-area"></div>
+    </div>
+
+    <div class="page  bg3" id="boss3">
+        <div class="round"></div>
+        <div class="beat-text"></div>
+        <div class="beattop">
+            <div class="top-time-wrap">
+                <p>0.00</p>
+                <p>计&nbsp;&nbsp;时</p>
+            </div>
+            <div class="top-hp-wrap">
+                <div class="hp-total">
+                    <div class="hp"></div>
+                    <p>HP</p>
+                </div>
+                <span></span>
+            </div>
+        </div>
+        <div class="beat-count-wrap">
+            <div class="beat-count">
+                <span></span>
+                <span class="count"></span>
+            </div>
+            <div class="beat-count-line">
+                <!-- <div class="left"></div>
+                <div class="center"></div>
+                <div class="right"></div> -->
+            </div>
+        </div>
+        <div id="boss-body" class="boss-body boss-body-1"></div>
+        <div id="boss-head" class="boss-head"></div>
+        <div id="boss-beaten-left" class="boss-beaten-left">
+            <div class="boss-beaten-head-left"></div>
+            <!-- <div class="boss-beaten-effect-left"></div> -->
+            <div class="boss-beaten-hand-left"></div>
+        </div>
+        <div id="boss-beaten-right" class="boss-beaten-right">
+            <div class="boss-beaten-head-right"></div>
+            <!-- <div class="boss-beaten-effect-right"></div> -->
+            <div class="boss-beaten-hand-right"></div>
+        </div>
+        <div class="beaten-area"></div>
+    </div>
+
+    <div class="page  bg1" id="end">
+        <div class="" id="popup-share">
+            <img data-src="res/end_bg.jpg" />
+            <div class="popup">
+                <div class="text">
+                    <p>恭喜通关！</p>
+                    <p>你在<span id="usetime">0</span>将老板三杀</p>
+                    <p>击败了全国<span id="defeat">0</span>的玩家</p>
+                    <button class="share_btn" onclick="WeiXinShareBtn();"></button>
+                </div>
+                <div class="bosshead">
+                    <img data-src="res/end_text.png" />
+                    <img data-src="res/end_boss1.png" />
+                    <img data-src="res/end_boss2.png" />
+                    <img data-src="res/end_boss3.png" />
+                </div>
             </div>
         </div>
     </div>
     
 </div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/fastclick.js"></script>
+<script type="text/javascript" src="js/ult.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

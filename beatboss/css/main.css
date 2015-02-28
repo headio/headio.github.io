@@ -63,38 +63,40 @@ input, button, div, section, selection {
 
 /* framework based on pixels */
 html, body {
-    height: 1280px;
+    height: 100%;
     font-family:"Microsoft YaHei", Simsun, "Hiragino Sans GB", Helvetica, "Droid Sans Fallback", sans-serif;
-    font-size:24px;
+    font-size: 62.5%;
+    max-width: 720px;
 }
 #wrap {
-    width: 720px;
+    width: 100%;
     margin: 0 auto;
     height: 100%;
-    min-height: 100%;
 }
 .page {
     position: relative;
     width: 100%;
-    min-height:100%;
-    overflow:hidden;
+    height:100%;
+    /*overflow-x:hidden;*/
     display:none;
 }
-.startpage {
+#boss1,#boss2,#boss3{overflow: hidden;}
+.bg1{background:#97212c;}
+.bg2{background:#6de5ff;}
+.bg3{background:#f3c664;}
+.show {
     display: block;
 }
-.popup {
-    position: absolute;
-    left: 76px;
-    top: 397px;
-    width: 570px;
-    height: 521px;
-    background: url(../res/popup-bkg.png) 0 0 no-repeat;
-    background-size: 100%;
-}
+.popup {width: 100%; height: 100%; background-size: 100%; position: absolute;top: 0;}
+.popup .text{width: 518px; margin: 0 auto; font-size: 4.2rem; padding: 20rem 0 0 0; font-weight: bold; }
+.popup .text span{ font-size: 5rem;color:rgb(234,22,60); }
+.popup .text .share_btn{ background: url(../res/share_btn.png) 0 0 no-repeat;width: 520px; height: 150px; border: none;outline: none;margin: 40px 0; }
+.popup .bosshead{width: 560px;margin: 80px auto;}
+.popup .bosshead img:nth-child(2){width: 33%}
+.popup .bosshead img:nth-child(3){width: 28%}
+.popup .bosshead img:nth-child(4){width: 25%}
 .popup-wrap {
     position: absolute;
-    display: none;
     left: 0;
     top: 0;
     width: 100%;
@@ -106,24 +108,20 @@ html, body {
     font-weight: bold;
     color: black;
 }
-.boss-head {
-    position: absolute;
-    left: 138px;
-    top: 317px;
-    width: 453px;
-    height: 438px;
-    background: url(../res/head-1.png) 0 0 no-repeat;
-    background-size: 100%;
-}
-.boss-body {
-    position: absolute;
-    left: -23px;
-    top: 688px;
-    width: 767px;
-    height: 767px;
-    background: url(../res/body-1.png) 0 0 no-repeat;
-    background-size: 100%;
-}
+.boss-head {position: absolute; left: 138px; top: 317px; width: 453px; height: 438px; background: url(../res/head-1.png) 0 0 no-repeat; background-size: 100%; }
+#boss2 .boss-head {position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(../res/boss2-head.png) 0 0 no-repeat; background-size: 100%; }
+#boss3 .boss-head {position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(../res/boss3-head.png) 0 0 no-repeat;background-size: 100%; }
+.boss-body {position: absolute; left: -23px; top: 688px; width: 767px; height: 767px; background: url(../res/body-1.png) 0 0 no-repeat; background-size: 100%; }
+#boss2 .boss-body {position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-size: 100%; }
+#boss3 .boss-body {position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-size: 100%; }
+
+#boss1 .round{position: absolute;width: 100%;height: 100%;background: url(../res/1.png) center center no-repeat;z-index: 100;}
+#boss2 .round{position: absolute;width: 100%;height: 100%;background: url(../res/2.png) center center no-repeat;z-index: 100;}
+#boss3 .round{position: absolute;width: 100%;height: 100%;background: url(../res/3.png) center center no-repeat;z-index: 100;}
+
+.beat-text{font-size: 4rem;opacity: 0;text-align: right; position: absolute; color: #FFF;top:250px;  width: 100%; height: 4rem; z-index: 15; font-weight: bold; }
+.beat-text-hide{}
+.beat-text-show{-webkit-animation: beat-text 800ms linear ;}
 
 /* startpage */
 .head-color-bkg {
@@ -132,23 +130,26 @@ html, body {
     top: 0;
     width: 100%;
     height: 800px;
-    background-color: #d8c49f;
+    background-color: #97212c;
 }
 .beat-title {
     position: absolute;
     left: 0;
     top: 0;
-    width: 720px;
-    height: 176px;
+    right: 0;
+    bottom: 0;
     background-size: 100%;
+    background: url(../res/p1_title.png) center center no-repeat;
     -webkit-animation: beat-title 800ms linear;
 }
-[class="beat-title normal"] {
-    background: url(../res/beat-text-normal.png) 0 0 no-repeat;
+
+@-webkit-keyframes beat-text {
+    0%   {right: 0;opacity: 0;}
+    20%  {right: 45%;opacity: 1;}
+    80%  {right: 45%;opacity: 1;}
+    100% {right: 100%;opacity: 0;}
 }
-[class="beat-title beaten"] {
-    background: url(../res/beat-text-beaten.png) 0 0 no-repeat;
-}
+
 @-webkit-keyframes beat-title {
     from {
         left: 720px;
@@ -198,41 +199,19 @@ html, body {
     background: url(../res/red-envelope.png) 0 0 no-repeat;
     background-size: 100%;
 }
-.beatbutton-wrap {
-    position: absolute;
-    left: 0;
-    top: 980px;
-    width: 100%;
-    height: 155px;
+.beatbutton-wrap {position: absolute; left: 0; bottom: 30%; width: 100%; height: 155px; }
+.beat-button {margin: 0 auto;display: block; width: 1px; height: 1px; background-size: 0; background: url(../res/start_btn.png) center center no-repeat; -webkit-animation: start_btn 800ms linear;-webkit-animation-delay: 0.8s;-webkit-animation-fill-mode: forwards;}
+.beat-button:active{background-image: url(../res/start_btn.png);}
+
+@-webkit-keyframes start_btn {
+    0%   {background-size: 0%;}
+    80%  {background-size: 100%;width: 435px; height: 155px;}
+    85%  {background-size: 80%;}
+    90%  {background-size: 100%;width: 435px; height: 155px;}
+    95%  {background-size: 95%;}
+    100%  {background-size: 100%;width: 435px; height: 155px;}
 }
-.beat-effect {
-    position: absolute;
-    left: 20px;
-    top: 0;
-    width: 104px;
-    height: 155px;
-    background-size: 100%;
-}
-[class="beat-effect normal"] {
-    display: none;
-}
-[class="beat-effect beaten"] {
-    background: url(../res/button-down-effect.png) 0 0 no-repeat;
-}
-.beat-button {
-    position: absolute;
-    left: 105px;
-    top: 40px;
-    width: 499px;
-    height: 177px;
-    background-size: 100%;
-}
-[class="beat-button normal"] {
-    background: url(../res/beat-button-normal.png) 0 0 no-repeat;
-}
-[class="beat-button beaten"] {
-    background: url(../res/beat-button-down.png) 0 0 no-repeat;
-}
+
 #popup-rule-confirm {
     position: absolute;
     left: 237px; 
@@ -254,203 +233,69 @@ html, body {
 .beatpage-head {
     background-color: #d7c59d;
 }
-.beattop {
-    position: absolute;
-    left: 0;
-    top: 49px;
-    width: 100%;
-    height: 75px;
-}
-.top-score-wrap {
-    position: absolute;
-    left: 38px;
-    top: 0;
-    width: 237px;
-    height: 75px;
-    background: url(../res/top-score.png) 0 0 no-repeat;
-    background-size: 100%;
-}
-.top-time-wrap {
-    position: absolute;
-    left: 321px;
-    top: 0;
-    width: 237px;
-    height: 75px;
-    background: url(../res/top-time.png) 0 0 no-repeat;
-    background-size: 100%;
-}
-#restart-button {
-    position: absolute;
-    left: 604px;
-    top: 0;
-    width: 75px;
-    height: 75px;
-    background: url(../res/top-restart.png) 0 0 no-repeat;
-    background-size: 100%;
-}
-.top-number {
-    position: absolute;
-    left: 120px;
-    top: 0;
-    width: 100px;
-    height: 75px;
-    text-align: center;
-    font-size: 50px;
-    font-weight: bold;
-    color: red;
-}
-.beaten-area {
-    position: absolute;
-    left: 0;
-    top: 150px;
-    width: 100%;
-    height: 1130px;
-}
-.boss-body-1 {
-    background: url(../res/body-1.png) 0 0 no-repeat;
-}
-.boss-body-2 {
-    background: url(../res/body-2.png) 0 0 no-repeat;
-}
-.boss-body-3 {
-    background: url(../res/body-3.png) 0 0 no-repeat;
-}
-.boss-body-4 {
-    background: url(../res/body-4.png) 0 0 no-repeat;
-}
-.boss-body-5 {
-    background: url(../res/body-5.png) 0 0 no-repeat;
-}
-.boss-head-1 {
-    background: url(../res/head-1.png) 0 0 no-repeat;
-}
-.boss-head-2 {
-    background: url(../res/head-2.png) 0 0 no-repeat;
-}
-.boss-head-3 {
-    background: url(../res/head-3.png) 0 0 no-repeat;
-}
-.boss-head-4 {
-    background: url(../res/head-4.png) 0 0 no-repeat;
-}
-.boss-head-5 {
-    background: url(../res/head-5.png) 0 0 no-repeat;
-}
-.boss-head-6 {
-    background: url(../res/head-6.png) 0 0 no-repeat;
-}
-.boss-head-7 {
-    background: url(../res/head-7.png) 0 0 no-repeat;
-}
-.boss-beaten-left {
-    position: absolute;
-    left: 0;
-    top: 315px;
-    width: 100%;
-    height: 965px;
-    display: none;
-}
-.boss-beaten-head-left {
-    position: absolute;
-    left: 151px;
-    top: 5px;
-    width: 544px;
-    height: 437px;
-    background: url(../res/beaten-head-left.png) 0 0 no-repeat;
-}
-.boss-beaten-right {
-    position: absolute;
-    left: 0;
-    top: 315px;
-    width: 100%;
-    height: 965px;
-    display: none;
-}
-.boss-beaten-head-right {
-    position: absolute;
-    left: 19px;
-    top: 0;
-    width: 544px;
-    height: 437px;
-    background: url(../res/beaten-head-right.png) 0 0 no-repeat;
-}
-.boss-beaten-effect-left {
-    position: absolute;
-    left: 96px;
-    top: 178px;
-    width: 368px;
-    height: 440px;
-    background: url(../res/beaten-effect-left.png) 0 0 no-repeat;
-}
-.boss-beaten-effect-right {
-    position: absolute;
-    left: 246px;
-    top: 189px;
-    width: 368px;
-    height: 440px;
-    background: url(../res/beaten-effect-right.png) 0 0 no-repeat;
-}
-.boss-beaten-hand-left {
-    position: absolute;
-    left: -221px;
-    top: 306px;
-    width: 523px;
-    height: 559px;
-    background: url(../res/hand-left.png) 0 0 no-repeat;
-}
-.boss-beaten-hand-right {
-    position: absolute;
-    left: 410px;
-    top: 307px;
-    width: 523px;
-    height: 559px;
-    background: url(../res/hand-right.png) 0 0 no-repeat;
-}
-.share-desc {
-    position: absolute;
-    left: 20px;
-    top: 40px;
-    width: 530px;
-    height: 300px;
-    line-height: 65px;
-}
-#phone-number {
-    position: absolute;
-    left: 110px;
-    top: 269px;
-    width: 323px;
-    height: 68px;
-    border: none;
-    text-align: center;
-    border-radius: 8px;
-    background: #5b4229;
-    color: #ab8a6a;
-    font-size: 25px;
-    font-weight: bold;
-}
-.popupdesc strong {
-    color: red;
-    font-size: 50px;
-}
-#phone-number::-webkit-input-placeholder {
-    color: #ab8a6a;
-}
-#phone-number:focus::-webkit-input-placeholder {
-    opacity: 0;
-}
-.share-redenvelope {
-    position: absolute;
-    left: 380px;
-    top: 270px;
-    width: 187px;
-    height: 227px;
-    background: url(../res/red-envelope.png) 0 0 no-repeat;
-}
-#popup-share-confirm {
-    position: absolute;
-    left: 111px;
-    top: 371px;
-    width: 327px;
-    height: 112px;
-    background: url(../res/share-button.png) 0 0 no-repeat;
-}
+.beattop {}
+.top-time-wrap {text-align: center;color: #FFF;line-height: 1;}
+.top-time-wrap p:nth-child(1){ font-size: 12rem;font-weight: bold; }
+.top-time-wrap p:nth-child(2){ font-size: 4rem; }
+.top-hp-wrap {width: 100%;margin: 30px 0;position: relative;}
+.top-hp-wrap .hp-total{ width: 80%;height: 50px;background: #fff;border-radius: 25px;margin: 0 auto; overflow: hidden;}
+.top-hp-wrap .hp-total > p {color: #525252;text-align: right; font-size: 3rem; line-height: 50px; font-weight: bold;position: relative;top: -50px;padding: 0 1rem;}
+.top-hp-wrap .hp{ background: rgb(255,216,0);border-radius: 25px;width: 100%; height: 100%;}
+#boss2 .top-hp-wrap .hp{ background: rgb(255,90,0);}
+#boss3 .top-hp-wrap .hp{ background: rgb(255,32,79);}
+.top-hp-wrap > span{ z-index: 10;width: 135px;height: 60px;position: absolute;left: 69%;top:-58px; }
+#boss1 .top-hp-wrap > span {background: url(../res/ui.png) -347px -90px no-repeat;}
+#boss2 .top-hp-wrap > span {background: url(../res/ui.png) -243px -77px no-repeat;width: 80px; height: 80px; left: 80%; top: -74px;}
+#boss3 .top-hp-wrap > span {background: url(../res/ui.png) -124px -77px no-repeat;width: 80px; height: 80px; left: 80%; top: -74px;}
+
+.beat-count-wrap{position: absolute;width: 80%;bottom: 5%;height: 200px;z-index: 10;right: 0;}
+.beat-count-wrap .beat-count { float:right;padding: 0 2rem; }
+.beat-count-wrap .beat-count span{ display: inline-block; }
+.beat-count-wrap .beat-count span:nth-child(1){background:url(../res/ui.png) -230px -176px no-repeat;width: 10rem;height: 40px;}
+.beat-count-wrap .beat-count .count{font-size: 6rem;padding: 0 1rem;color: red; font-weight: bold;}
+.beat-count-wrap .beat-count-line{float:right;margin: 0 2rem;clear: both;width: 100%;height: 20px;background-color: red;border-radius: 20px;  }
+/*.beat-count-wrap .beat-count-line div{display: inline-block;background: url(../res/ui.png) no-repeat;height: 14px;float:left;}
+.beat-count-wrap .beat-count-line .left {background-position: -373px -187px;width: 52px }
+.beat-count-wrap .beat-count-line .center {background: rgb(211,38,46);width: 87%; }
+.beat-count-wrap .beat-count-line .right {background-position: -448px -187px; width: 10px;}*/
+.beat-count-wrap .beat-count-line{background: -webkit-linear-gradient(left, rgb(255,255,230), rgb(253,128,129) 5%, rgb(227,82,25) 10%, rgb(211,38,46) 100%);border:1px solid rgb(240,119,15);}
+
+.top-number {position: absolute; left: 120px; top: 0; width: 100px; height: 75px; text-align: center; font-size: 50px; font-weight: bold; color: red; }
+.beaten-area {position: absolute; left: 0; top: 150px; width: 100%; height: 1130px; z-index: 200;}
+.boss-body-1 {background: url(../res/body-1.png) 0 0 no-repeat; }
+.boss-body-2 {background: url(../res/body-2.png) 0 0 no-repeat; }
+.boss-body-3 {background: url(../res/body-3.png) 0 0 no-repeat; }
+.boss-body-4 {background: url(../res/body-4.png) 0 0 no-repeat; }
+.boss-body-5 {background: url(../res/body-5.png) 0 0 no-repeat; }
+.boss-head-1 {background: url(../res/head-1.png) 0 0 no-repeat; }
+.boss-head-2 {background: url(../res/head-2.png) 0 0 no-repeat; }
+.boss-head-3 {background: url(../res/head-3.png) 0 0 no-repeat; }
+.boss-head-4 {background: url(../res/head-4.png) 0 0 no-repeat; }
+.boss-head-5 {background: url(../res/head-5.png) 0 0 no-repeat; }
+.boss-head-6 {background: url(../res/head-6.png) 0 0 no-repeat; }
+.boss-head-7 {background: url(../res/head-7.png) 0 0 no-repeat; }
+
+#boss2 .boss-body-1 {background: url(../res/boss2-body.png) 0 0 no-repeat; }
+#boss2 .boss-head-1 {background: url(../res/boss2-head.png) 0 0 no-repeat; }
+#boss2 .boss-head-2 {background: url(../res/boss2-beaten.png) 0 0 no-repeat; }
+#boss3 .boss-body-1 {background: url(../res/boss3-body.png) 0 0 no-repeat; }
+#boss3 .boss-head-1 {background: url(../res/boss3-head.png) 0 0 no-repeat; }
+#boss3 .boss-head-2 {background: url(../res/boss3-beaten.png) 0 0 no-repeat; }
+.boss-beaten-left {position: absolute; left: 0; top: 315px; width: 100%; height: 965px; display: none; }
+.boss-beaten-head-left {position: absolute; left: 151px; top: 5px; width: 544px; height: 437px; background: url(../res/beaten-head-left.png) 0 0 no-repeat; }
+#boss3 .boss-beaten-head-left {position: absolute; left: 0; top: -313px; width: 100%; height: 100%; background: url(../res/boss3-beating.png) 0 0 no-repeat; }
+.boss-beaten-right {position: absolute; left: 0; top: 315px; width: 100%; height: 965px; display: none; }
+.boss-beaten-head-right {position: absolute; left: 19px; top: 0; width: 544px; height: 437px; background: url(../res/beaten-head-right.png) 0 0 no-repeat; }
+#boss2 .boss-beaten-head-right {position: absolute; left: 0; top: -283px; width: 100%; height: 100%; background: url(../res/boss2-beating.png) 0 0 no-repeat; }
+.boss-beaten-effect-left {position: absolute; left: 96px; top: 178px; width: 368px; height: 440px; background: url(../res/beaten-effect-left.png) 0 0 no-repeat; }
+.boss-beaten-effect-right {position: absolute; left: 246px; top: 189px; width: 368px; height: 440px; background: url(../res/beaten-effect-right.png) 0 0 no-repeat; }
+.boss-beaten-hand-left {position: absolute; left: -221px; top: 306px; width: 523px; height: 559px; background: url(../res/hand-left.png) 0 0 no-repeat; }
+.boss-beaten-hand-right {position: absolute; left: 410px; top: 307px; width: 523px; height: 559px; background: url(../res/hand-right.png) 0 0 no-repeat; }
+#boss2 .boss-beaten-hand-right {position: absolute; left: 281px; top: 362px; width: 523px; height: 559px; background: url(../res/hand-right.png) 0 0 no-repeat; }
+.share-desc {position: absolute; left: 20px; top: 40px; width: 530px; height: 300px; line-height: 65px; }
+#phone-number {position: absolute; left: 110px; top: 269px; width: 323px; height: 68px; border: none; text-align: center; border-radius: 8px; background: #5b4229; color: #ab8a6a; font-size: 25px; font-weight: bold; }
+.popupdesc strong {color: red; font-size: 50px; }
+#phone-number::-webkit-input-placeholder {color: #ab8a6a; }
+#phone-number:focus::-webkit-input-placeholder {opacity: 0; }
+.share-redenvelope {position: absolute; left: 380px; top: 270px; width: 187px; height: 227px; background: url(../res/red-envelope.png) 0 0 no-repeat; }
+#popup-share-confirm {position: absolute; left: 111px; top: 371px; width: 327px; height: 112px; background: url(../res/share-button.png) 0 0 no-repeat; }
