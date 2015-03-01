@@ -492,6 +492,7 @@ var wxWrapper = (function() {
     }, para);
     
     var OnBridgeReady = function() {
+        WeixinJSBridge.call('hideOptionMenu');
         //微信朋友圈
         WeixinJSBridge.on("menu:share:timeline", function(){
             WeixinJSBridge.invoke("shareTimeline", {
