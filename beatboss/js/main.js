@@ -481,6 +481,44 @@ var beat_end = (function() {
     return e_;
 })();
 
+var wxWrapper = (function() {
+    var e_ = {};
+    
+    var para = $.extend({
+        title : document.title,
+         text : document.title,
+          url : document.location.href,
+          img : ""
+    }, para);
+    
+    e_.Init = function() {
+        document.addEventListener("WeixinJSBridgeReady", function() {
+            alert("WeixinJSBridgeReady");
+        //微信朋友圈
+        WeixinJSBridge.on("menu:share:timeline", function(){
+            alert("menu:share:timeline");
+            WeixinJSBridge.invoke("shareTimeline", {
+                img_url : para.img,
+                   link : para.url,
+                   desc : para.text,
+                  title : para.text
+            });
+        });
+        /*
+        //微信朋友
+        WeixinJSBridge.on("menu:share:appmessage", function(){
+            WeixinJSBridge.invoke("sendAppMessage", {
+                img_url : para.img,
+                   link : para.url,
+                   desc : para.text,
+                  title : para.title
+            });
+        });*/
+    });
+    };
+    return e_;
+})();
+
 $(function() {
     FastClick.attach(document.body);
 });
@@ -646,24 +684,11 @@ var loadImg = function(url){
 
     window.beat = beat;
 
-})(window, undefined)
-
+})(window, undefined);
 
 function WeiXinShareBtn() {
     try {
-        wx.onMenuShareTimeline({
-        title: '', // 分享标题
-        link: '', // 分享链接
-        imgUrl: '', // 分享图标
-        success: function () {
-            alert("success");
-            // 用户确认分享后执行的回调函数
-        },
-        cancel: function () { 
-            alert("cancel");
-            // 用户取消分享后执行的回调函数
-        }
-        });
+        wxWrapper.Init();
     } catch(e) {
         console.log(e.message);
     }
@@ -681,4 +706,5 @@ function WeiXinShareBtn() {
     return rootPath;  
       
 }
+
 
