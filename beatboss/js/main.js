@@ -650,21 +650,11 @@ var loadImg = function(url){
 
 
 function WeiXinShareBtn() {
-    try {
-        wx.onMenuShareTimeline({
-        title: '', // 分享标题
-        link: '', // 分享链接
-        imgUrl: '', // 分享图标
-        success: function () {
-            alert("success");
-            // 用户确认分享后执行的回调函数
-        },
-        cancel: function () { 
-            alert("cancel");
-            // 用户取消分享后执行的回调函数
-        }
-        });
-    } catch(e) {
+    try{
+
+
+        
+    }catch(e){
         console.log(e.message);
     }
     
