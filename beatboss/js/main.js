@@ -492,6 +492,7 @@ var wxWrapper = (function() {
     }, para);
     
     e_.Init = function() {
+        alert("Init");
         document.addEventListener("WeixinJSBridgeReady", function() {
             alert("WeixinJSBridgeReady");
         //微信朋友圈
