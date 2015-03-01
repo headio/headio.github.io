@@ -519,14 +519,15 @@ var wxWrapper = (function() {
     e_.Init = function() {
         alert("Init");
         if (typeof WeixinJSBridge == "undefined") {
+            alert("attach")
             if( document.addEventListener ){
-                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                document.addEventListener('WeixinJSBridgeReady', OnBridgeReady, false);
             } else if (document.attachEvent){
-                document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
-                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                document.attachEvent('WeixinJSBridgeReady', OnBridgeReady); 
+                document.attachEvent('onWeixinJSBridgeReady', OnBridgeReady);
             }
         } else {
-            onBridgeReady();
+            OnBridgeReady();
         }
     };
     return e_;
