@@ -492,8 +492,6 @@ var wxWrapper = (function() {
     }, para);
     
     var OnBridgeReady = function() {
-        alert("OnBridgeReady");
-        /*
         //微信朋友圈
         WeixinJSBridge.on("menu:share:timeline", function(){
             alert("menu:share:timeline");
@@ -502,6 +500,11 @@ var wxWrapper = (function() {
                    link : para.url,
                    desc : para.text,
                   title : para.text
+            }, function (res) {
+                if (res.err_msg == "share_timeline:ok") {
+                    alert("ok")
+                    //分享成功
+                }
             });
         });
         
@@ -513,13 +516,11 @@ var wxWrapper = (function() {
                    desc : para.text,
                   title : para.title
             });
-        });*/
+        });
     };
     
     e_.Init = function() {
-        alert("Init");
         if (typeof WeixinJSBridge == "undefined") {
-            alert("attach")
             if( document.addEventListener ){
                 document.addEventListener('WeixinJSBridgeReady', OnBridgeReady, false);
             } else if (document.attachEvent){
