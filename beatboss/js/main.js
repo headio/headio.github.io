@@ -494,20 +494,18 @@ var wxWrapper = (function() {
     var OnBridgeReady = function() {
         //微信朋友圈
         WeixinJSBridge.on("menu:share:timeline", function(){
-            alert("menu:share:timeline");
-            /*
             WeixinJSBridge.invoke("shareTimeline", {
                 img_url : para.img,
                    link : para.url,
                    desc : para.text,
                   title : para.text
             }, function (res) {
+                alert("share callback");
                 if (res.err_msg == "share_timeline:ok") {
                     alert("ok")
                     //分享成功
                 }
             });
-            */
         });
         /*
         //微信朋友
