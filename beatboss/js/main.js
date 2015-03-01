@@ -495,6 +495,7 @@ var wxWrapper = (function() {
         //微信朋友圈
         WeixinJSBridge.on("menu:share:timeline", function(){
             alert("menu:share:timeline");
+            /*
             WeixinJSBridge.invoke("shareTimeline", {
                 img_url : para.img,
                    link : para.url,
@@ -506,8 +507,9 @@ var wxWrapper = (function() {
                     //分享成功
                 }
             });
+            */
         });
-        
+        /*
         //微信朋友
         WeixinJSBridge.on("menu:share:appmessage", function(){
             WeixinJSBridge.invoke("sendAppMessage", {
@@ -517,6 +519,7 @@ var wxWrapper = (function() {
                   title : para.title
             });
         });
+        */
     };
     
     e_.Init = function() {
