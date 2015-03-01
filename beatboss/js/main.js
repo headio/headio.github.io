@@ -476,7 +476,17 @@ var beat_end = (function() {
         
     }; 
 
+    return e_;
+})();
+
+var beat_ad = (function() {
+    var e_ = {};
     
+    e_.Start = function() {
+        $("#challenge-now").click(function() {
+            alert("开始玩游戏！")
+        });
+    }
     
     return e_;
 })();
@@ -522,16 +532,6 @@ var wxWrapper = (function() {
     };
     
     e_.Init = function() {
-        if (typeof WeixinJSBridge == "undefined") {
-            if( document.addEventListener ){
-                document.addEventListener('WeixinJSBridgeReady', OnBridgeReady, false);
-            } else if (document.attachEvent){
-                document.attachEvent('WeixinJSBridgeReady', OnBridgeReady); 
-                document.attachEvent('onWeixinJSBridgeReady', OnBridgeReady);
-            }
-        } else {
-            OnBridgeReady();
-        }
     };
     return e_;
 })();
@@ -614,6 +614,8 @@ var loadImg = function(url){
             var func = 'boss'+round;
             if(round===4){
                 func = 'end';
+            } else if (round === 5) {
+                func = 'ad';
             }
             $('.page.show').removeClass('show');
             $('#'+func).addClass('show');
@@ -706,6 +708,10 @@ var loadImg = function(url){
 function WeiXinShareBtn() {
     try {
         wxWrapper.Init();
+        $("#share-guide").show();
+        setTimeout(function(){
+            beat.startRound();
+        }, 2000);
     } catch(e) {
         console.log(e.message);
     }
