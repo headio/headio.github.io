@@ -491,10 +491,9 @@ var wxWrapper = (function() {
           img : ""
     }, para);
     
-    e_.Init = function() {
-        alert("Init");
-        document.addEventListener("WeixinJSBridgeReady", function() {
-            alert("WeixinJSBridgeReady");
+    var OnBridgeReady = function() {
+        alert("OnBridgeReady");
+        /*
         //微信朋友圈
         WeixinJSBridge.on("menu:share:timeline", function(){
             alert("menu:share:timeline");
@@ -505,7 +504,7 @@ var wxWrapper = (function() {
                   title : para.text
             });
         });
-        /*
+        
         //微信朋友
         WeixinJSBridge.on("menu:share:appmessage", function(){
             WeixinJSBridge.invoke("sendAppMessage", {
@@ -515,7 +514,20 @@ var wxWrapper = (function() {
                   title : para.title
             });
         });*/
-    });
+    };
+    
+    e_.Init = function() {
+        alert("Init");
+        if (typeof WeixinJSBridge == "undefined") {
+            if( document.addEventListener ){
+                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+            } else if (document.attachEvent){
+                document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+            }
+        } else {
+            onBridgeReady();
+        }
     };
     return e_;
 })();
