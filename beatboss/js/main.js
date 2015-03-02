@@ -104,10 +104,38 @@ var beat_boss1 = (function() {
         {min_count: 61, max_count: 999, boss_head: "boss-head-7", boss_body: "boss-body-5"}
     ];  
     var beat_text = [
-        '叫你丫加班','叫你丫','工作多','没提成','人家休假我加班','房贷没还清','保险自己买','好在不用交停车费','根本买不起车'
+        '叫你丫加班','叫你丫','工作多','没提成','人家休假我加班','房贷没还清','保险自己买',
+        '好在不用交停车费','根本买不起车'
     ];
     var beat_timeout = 0;
 
+    var BeatenOnce = function() {
+        console.log("beat once");
+        if (first_beat) {
+            beat.timer.start(function(time){
+                $(parent+'.top-time-wrap p').eq(0).text(time);
+            });
+            first_beat = false;
+        }
+        
+        sound.RandomPlayBeatenSound();
+        beat.SetBeatText(beat_text[beat_count%beat_text.length], $(parent+'.beat-text'));
+        if (last_hand == 0) {
+            RightBeatBoss();
+        } else if (last_hand == 1) {
+            LeftBeatBoss();
+        }
+        SetScore(beat_count, hp);
+        SetBossWithStage();
+
+        if ( beat_count === hp ){
+            beat.timer.stop();
+            setTimeout(function(){
+                beat.startRound();
+            },1000);
+            $(this).unbind();
+        }
+    };
     
     e_.Start = function() {
 
@@ -121,34 +149,11 @@ var beat_boss1 = (function() {
             
             $(parent+'.round').hide();
             
-            $(parent+".beaten-area").click(function() {
-                
-                console.log("beat once");
-                if (first_beat) {
-                    beat.timer.start(function(time){
-                        $(parent+'.top-time-wrap p').eq(0).text(time);
-                    });
-                    first_beat = false;
-                }
-                
-                sound.RandomPlayBeatenSound();
-                beat.SetBeatText(beat_text[beat_count%beat_text.length], $(parent+'.beat-text'));
-                if (last_hand == 0) {
-                    RightBeatBoss();
-                } else if (last_hand == 1) {
-                    LeftBeatBoss();
-                }
-                SetScore(beat_count, hp);
-                SetBossWithStage();
-
-                if ( beat_count === hp ){
-                    beat.timer.stop();
-                    setTimeout(function(){
-                        beat.startRound();
-                    },1000);
-                    $(this).unbind();
-                }
-                
+            //$(parent+".beaten-area").click(function(){
+            //    BeatenOnce();
+            //});
+            $(parent+".beaten-area").dblclick(function(){
+                BeatenOnce();
             });
         }, 4000);
         
@@ -537,11 +542,8 @@ var wxWrapper = (function() {
     return e_;
 })();
 
-$(function() {
-    FastClick.attach(document.body);
-});
-
 $(document).ready(function() {
+    FastClick.attach(document.body);
     sound.SetBGM("res/bgm.mp3");
     sound.AddBeatenSound("res/beat1.mp3");
     sound.AddBeatenSound("res/beat2.mp3");
