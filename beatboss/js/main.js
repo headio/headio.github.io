@@ -564,6 +564,8 @@ $(document).ready(function() {
 
 window.onload = function(){
     loadImg('res/1.png');
+    loadImg('res/2.png');
+    loadImg('res/3.png');
     loadImg('res/head-1.png');
     loadImg('res/body-1.png');
     loadImg('res/beaten-head-left.png');
@@ -721,6 +723,11 @@ var loadImg = function(url){
 function WeiXinShareBtn() {
     try {
         $("#share-guide").show();
+        setTimeout(function(){
+            $("#share-guide").click(function(){
+                $("#share-guide").hide();
+            });
+        }, 1500);
     } catch(e) {
         console.log(e.message);
     }
@@ -738,5 +745,3 @@ function WeiXinShareBtn() {
     return rootPath;  
       
 }
-
-
