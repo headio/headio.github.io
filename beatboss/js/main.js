@@ -123,6 +123,7 @@ var beat_boss1 = (function() {
             
             $(parent+".beaten-area").click(function() {
                 
+                console.log("beat once");
                 if (first_beat) {
                     beat.timer.start(function(time){
                         $(parent+'.top-time-wrap p').eq(0).text(time);
@@ -258,7 +259,7 @@ var beat_boss2 = (function() {
             $(parent+'.round').hide();
 
             $(parent+".beaten-area").click(function() {
-                
+                console.log("beat once");
                 if (first_beat) {
                     beat.timer.start(function(time){
                         $(parent+'.top-time-wrap p').eq(0).text(time);
@@ -373,14 +374,14 @@ var beat_boss3 = (function() {
 
         sound.ReplayBGM();
 
-        setTimeout( function(){
+        setTimeout(function() {
 
             sound.PauseBGM();
 
             $(parent+'.round').hide();
         
             $(parent+".beaten-area").click(function() {
-                
+                console.log("beaten once");
                 if (first_beat) {
                     beat.timer.start(function(time){
                         $(parent+'.top-time-wrap p').eq(0).text(time);
@@ -614,8 +615,6 @@ var loadImg = function(url){
             var func = 'boss'+round;
             if(round===4){
                 func = 'end';
-            } else if (round === 5) {
-                func = 'ad';
             }
             $('.page.show').removeClass('show');
             $('#'+func).addClass('show');
@@ -707,11 +706,7 @@ var loadImg = function(url){
 
 function WeiXinShareBtn() {
     try {
-        wxWrapper.Init();
         $("#share-guide").show();
-        setTimeout(function(){
-            beat.startRound();
-        }, 2000);
     } catch(e) {
         console.log(e.message);
     }
