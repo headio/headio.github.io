@@ -90,7 +90,7 @@ html, body {
 .popup {width: 100%; height: 100%; background-size: 100%; position: absolute;top: 0;}
 .popup .text{width: 518px; margin: 0 auto; font-size: 4.2rem; padding: 20rem 0 0 0; font-weight: bold; }
 .popup .text span{ font-size: 5rem;color:rgb(234,22,60); }
-.popup .text .share_btn{ background: url(../res/share_btn.png) 0 0 no-repeat;width: 520px; height: 150px; border: none;outline: none;margin: 40px 0; }
+.popup .text .share_btn{ background: url(../res/share-button.png) 0 0 no-repeat;width: 520px; height: 150px; border: none;outline: none;margin: 40px 0; }
 .popup .bosshead{width: 560px;margin: 80px auto;}
 .popup .bosshead img:nth-child(2){width: 33%}
 .popup .bosshead img:nth-child(3){width: 28%}
@@ -304,3 +304,26 @@ html, body {
 .boss-tag-3 { position: absolute; left: 0px; top: 850px; width: 660px; height: 300px; background: url(../res/boss-tag-3.png) 0 0 no-repeat; z-index: 150; }
 #share-guide { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: url(../res/share-guide.png) 0 0 no-repeat; display: none; }
 #challenge-now { position: absolute; left: 120px; top: 963px; width: 489px; height: 120px; }
+.end-bg-1 { background: url(../res/share-bg-1.png) 0 0 no-repeat; }
+.end-bg-2 { background: url(../res/share-bg-2.png) 0 0 no-repeat; }
+.cover { position: absolute; left: 0; top: 0; width: 720px; height: 1280px; }
+.share-button-limit { position: absolute; left: 145px; top: 586px; width: 430px; height: 298px; overflow: hidden; }
+#share-button { position: absolute; left: 0; top: 0; width: 430px; height: 298px; background: url(../res/share-button.png) 0 0 no-repeat; -webkit-animation: share-button 800ms linear;}
+#share-button-click-area { position: absolute; left: 53px; top: 194px; width: 324px; height: 96px; z-index: 200; }
+@-webkit-keyframes share-button { from { top: -298px;} to { top: 0px; } }
+.share-text {
+    font-size: 36px;
+    font-weight: bold;
+    width: 400px;
+    left: 165px;
+    top: 620px;
+    position: absolute;
+    color: white;
+    display: none;
+}
+#usetime {
+    color: #f9c500;
+}
+#defeat {
+    color: #f9c500;
+}

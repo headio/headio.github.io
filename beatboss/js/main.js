@@ -487,11 +487,33 @@ var beat_boss3 = (function() {
 var beat_end = (function() {
     var e_ = { };
     
+    var bgno = 0;
+    var bgclass = ["end-bg-1", "end-bg-2"];
+    var bgswitchInteval = 0;
+    
     e_.Start = function() {
-        
         $('#usetime').text(beat.timer.use+'秒');
         $('#defeat').text( beat.defeat(beat.timer.use) );
         
+        $("#share-button").bind("webkitAnimationEnd", function() {
+            $("#share-text").show();
+            
+            $("#share-button-click-area").click(function() {
+                $("#share-guide").show();
+                setTimeout(function(){
+                    $("#share-guide").click(function(){
+                        $("#share-guide").hide();
+                    });
+                }, 1500);
+            });
+        });
+        
+        bgswitchInteval = setInterval(function() {
+            var oldbgno = bgno;
+            bgno = (bgno + 1) % bgclass.length;
+            $("#end").removeClass(bgclass[oldbgno]);
+            $("#end").addClass(bgclass[bgno]);
+        }, 300);
     }; 
 
     return e_;
@@ -594,12 +616,15 @@ window.onload = function(){
     loadImg('res/boss3-head.png');
     loadImg('res/boss-beaten.png');
     loadImg('res/boss-normal.png');
-    loadImg('res/end_bg.jpg');
     loadImg('res/end_boss1.png');
     loadImg('res/end_boss2.png');
     loadImg('res/end_boss3.png');
     loadImg('res/end_text.png');
-    loadImg('res/share_btn.png');
+    loadImg('res/share-button.png');
+    loadImg('res/share-bg-1.png');
+    loadImg('res/share-bg-2.png');
+    loadImg('res/share-boss.png');
+    loadImg('res/share-logo.png');
 }
 
 var loadImg = function(url){
@@ -719,20 +744,6 @@ var loadImg = function(url){
     window.beat = beat;
 
 })(window, undefined);
-
-function WeiXinShareBtn() {
-    try {
-        $("#share-guide").show();
-        setTimeout(function(){
-            $("#share-guide").click(function(){
-                $("#share-guide").hide();
-            });
-        }, 1500);
-    } catch(e) {
-        console.log(e.message);
-    }
-    
- }
 
  function getURL(){  
     var curWwwPath = window.document.location.href;  

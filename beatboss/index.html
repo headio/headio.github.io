@@ -151,22 +151,19 @@
         <div class="beaten-area"></div>
     </div>
 
-    <div class="page bg1" id="end">
+    <div class="page bg1 end-bg-1" id="end">
         <div class="" id="popup-share">
-            <img data-src="res/end_bg.jpg" />
-            <div class="popup">
-                <div class="text">
-                    <p>恭喜通关！</p>
-                    <p>你在<span id="usetime">0</span>将老板三杀</p>
-                    <p>击败了全国<span id="defeat">0</span>的玩家</p>
-                    <button class="share_btn" onclick="WeiXinShareBtn();"></button>
+            <img class="cover" src="res/share-boss.png" />
+            <div class="share-button-limit">
+                <div id="share-button">
+                    <div id="share-button-click-area"></div>
                 </div>
-                <div class="bosshead">
-                    <img data-src="res/end_text.png" />
-                    <img data-src="res/end_boss1.png" />
-                    <img data-src="res/end_boss2.png" />
-                    <img data-src="res/end_boss3.png" />
-                </div>
+            </div>
+            <img class="cover" src="res/share-logo.png" />
+            <div class="share-text" id="share-text">
+                <p>天哪！！！
+                <p>你用了<span id="usetime">0</span>完成三杀
+                <p>战胜了全国<span id="defeat">0</span>的玩家
             </div>
         </div>
         <div id="share-guide"></div>
