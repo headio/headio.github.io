@@ -132,8 +132,9 @@ var beat_boss1 = (function() {
             beat.timer.stop();
             setTimeout(function(){
                 beat.startRound();
-            },1000);
+            }, 1000);
             $(this).unbind();
+            $(parent+".beaten-area").unbind("touchstart");
         }
     };
     
@@ -149,10 +150,7 @@ var beat_boss1 = (function() {
             
             $(parent+'.round').hide();
             
-            //$(parent+".beaten-area").click(function(){
-            //    BeatenOnce();
-            //});
-            $(parent+".beaten-area").dblclick(function(){
+            $(parent+".beaten-area").bind("touchstart", function(){
                 BeatenOnce();
             });
         }, 4000);
@@ -263,7 +261,7 @@ var beat_boss2 = (function() {
 
             $(parent+'.round').hide();
 
-            $(parent+".beaten-area").click(function() {
+            $(parent+".beaten-area").bind("touchstart", function() {
                 console.log("beat once");
                 if (first_beat) {
                     beat.timer.start(function(time){
@@ -288,6 +286,7 @@ var beat_boss2 = (function() {
                         beat.startRound();
                     },1000);
                     $(this).unbind();
+                    $(parent+".beaten-area").unbind("touchstart");
                 }
                 
             });
@@ -317,19 +316,26 @@ var beat_boss2 = (function() {
     
     var RightBeatBoss = function() {
         ++beat_count;
-        if (last_hand == 0) {
-            $(parent+".boss-head").hide();
-            $(parent+".boss-beaten-left").hide();
-            $(parent+".boss-beaten-right").show();
+        
+        $(parent+".boss-head").hide();
+        $(parent+".boss-beaten-right").show();
+        if (beat_timeout != 0) {
             clearTimeout(beat_timeout);
-            beat_timeout = setTimeout(function() {
-                $(parent+".boss-beaten-right").hide();
-                $(parent+".boss-head").show();
-                last_hand = 0;
-            }, 400);
-            
-            last_hand = 1;
+            beat_timeout = 0;
+            $(parent+".boss-beaten-right").hide();
+            $(parent+".boss-head").show();
+            setTimeout(function(){
+                $(parent+".boss-head").hide();
+                $(parent+".boss-beaten-right").show();
+            }, 100);
         }
+        beat_timeout = setTimeout(function() {
+            $(parent+".boss-beaten-right").hide();
+            $(parent+".boss-head").show();
+            beat_timeout = 0;
+        }, 400);
+            
+        last_hand = 1;
     };
 
     var SetScore = function(count, hp) {
@@ -385,7 +391,7 @@ var beat_boss3 = (function() {
 
             $(parent+'.round').hide();
         
-            $(parent+".beaten-area").click(function() {
+            $(parent+".beaten-area").bind("touchstart", function() {
                 console.log("beaten once");
                 if (first_beat) {
                     beat.timer.start(function(time){
@@ -410,6 +416,7 @@ var beat_boss3 = (function() {
                         beat.startRound();
                     },1000);
                     $(this).unbind();
+                    $(parent+".beaten-area").unbind("touchstart");
                 }
                 
             });
@@ -439,19 +446,24 @@ var beat_boss3 = (function() {
     
     var LeftBeatBoss = function() {
         ++beat_count;
-        if (last_hand == 1) {
-            $(parent+".boss-head").hide();
-            $(parent+".boss-beaten-right").hide();
-            $(parent+".boss-beaten-left").show();
+        $(parent+".boss-head").hide();
+        $(parent+".boss-beaten-left").show();
+        if (beat_timeout != 0) {
             clearTimeout(beat_timeout);
-            beat_timeout = setTimeout(function() {
-                $(parent+".boss-beaten-left").hide();
-                $(parent+".boss-head").show();
-                last_hand = 1;
-            }, 400);
-            
-            last_hand = 0;
+            beat_timeout = 0;
+            $(parent+".boss-beaten-left").hide();
+            $(parent+".boss-head").show();
+            setTimeout(function(){
+                $(parent+".boss-head").hide();
+                $(parent+".boss-beaten-left").show();
+            }, 100);
         }
+        beat_timeout = setTimeout(function() {
+            $(parent+".boss-beaten-left").hide();
+            $(parent+".boss-head").show();
+        }, 400);
+        
+        last_hand = 0;
     };
 
     var SetScore = function(count, hp) {
@@ -543,7 +555,7 @@ var wxWrapper = (function() {
 })();
 
 $(document).ready(function() {
-    FastClick.attach(document.body);
+    //FastClick.attach(document.body);
     sound.SetBGM("res/bgm.mp3");
     sound.AddBeatenSound("res/beat1.mp3");
     sound.AddBeatenSound("res/beat2.mp3");
