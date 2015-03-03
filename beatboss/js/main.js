@@ -392,7 +392,6 @@ var beat_boss3 = (function() {
             $(parent+'.round').hide();
         
             $(parent+".beaten-area").bind("touchstart", function() {
-                console.log("beaten once");
                 if (first_beat) {
                     beat.timer.start(function(time){
                         $(parent+'.top-time-wrap p').eq(0).text(time);
@@ -492,6 +491,7 @@ var beat_end = (function() {
     var bgswitchInteval = 0;
     
     e_.Start = function() {
+        sound.ReplayBGM();
         $('#usetime').text(beat.timer.use+'秒');
         $('#defeat').text( beat.defeat(beat.timer.use) );
         
@@ -513,7 +513,7 @@ var beat_end = (function() {
             bgno = (bgno + 1) % bgclass.length;
             $("#end").removeClass(bgclass[oldbgno]);
             $("#end").addClass(bgclass[bgno]);
-        }, 300);
+        }, 200);
     }; 
 
     return e_;

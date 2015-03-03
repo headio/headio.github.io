@@ -307,7 +307,7 @@ html, body {
 .end-bg-1 { background: url(../res/share-bg-1.png) 0 0 no-repeat; }
 .end-bg-2 { background: url(../res/share-bg-2.png) 0 0 no-repeat; }
 .cover { position: absolute; left: 0; top: 0; width: 720px; height: 1280px; }
-.share-button-limit { position: absolute; left: 145px; top: 586px; width: 430px; height: 298px; overflow: hidden; }
+.share-button-limit { position: absolute; left: 145px; top: 176px; width: 430px; height: 298px; overflow: hidden; }
 #share-button { position: absolute; left: 0; top: 0; width: 430px; height: 298px; background: url(../res/share-button.png) 0 0 no-repeat; -webkit-animation: share-button 800ms linear;}
 #share-button-click-area { position: absolute; left: 53px; top: 194px; width: 324px; height: 96px; z-index: 200; }
 @-webkit-keyframes share-button { from { top: -298px;} to { top: 0px; } }
@@ -316,7 +316,7 @@ html, body {
     font-weight: bold;
     width: 400px;
     left: 165px;
-    top: 620px;
+    top: 210px;
     position: absolute;
     color: white;
     display: none;
@@ -326,4 +326,27 @@ html, body {
 }
 #defeat {
     color: #f9c500;
+}
+.share-boss {
+    position: absolute;
+    left: 80px;
+    top: 542px;
+    width: 547px;
+    height: 328px;
+    background: url(../res/share-boss.png) 0 0 no-repeat;
+}
+.share-logo {
+    position: absolute;
+    left: 107px;
+    top: 1px;
+    width: 514px;
+    height: 220px;
+    background: url(../res/share-logo.png) 0 0 no-repeat;
+}
+#popup-share {
+    position: absolute;
+    left: 0;
+    top: 250px;
+    width: 100%;
+    height: 870px;
 }
