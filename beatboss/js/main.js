@@ -715,12 +715,13 @@ var loadImg = function(url){
     }
 
     beat.defeat = function(time){
-        if ( time <= 30 ){
-            return '97%';
-        }else if ( time > 100 ){
+        var tempTime = Math.ceil(time);
+        if ( tempTime <= 8 ){
+            return '99%';
+        } else if ( tempTime > 100 ){
             return '0%';
         }else{
-            return Math.floor(97 - (time-30)/70*96) + '%';
+            return (107 - tempTime) + '%';
         }
     }
 
