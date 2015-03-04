@@ -4,6 +4,7 @@ var sound = (function(){
     var bgm;
     var bgmplaying = false;
     var beaten_sounds = [];
+    var endbgm;
     
     e_.SetBGM = function(path) {
         bgm = ult.audio.CreateAudio(path, {preload: true, loop: true, autoplay: true});
@@ -52,6 +53,14 @@ var sound = (function(){
         var randSound = beaten_sounds[ult.GetRandom(0, beaten_sounds.length)];
         randSound.play();
     };
+    
+    e_.PreloadEndMusic = function(source) {
+        endbgm = ult.audio.CreateAudio(source, {preload: true, loop: true})
+    }
+    
+    e_.PlayEndMusic = function() {
+        endbgm.play();
+    }
     
     return e_;
 })();
@@ -384,6 +393,7 @@ var beat_boss3 = (function() {
         $(parent+'.top-time-wrap p').eq(0).text(beat.timer.use);
 
         sound.ReplayBGM();
+        sound.PreloadEndMusic("res/end-bgm.mp3");
 
         setTimeout(function() {
 
@@ -491,7 +501,7 @@ var beat_end = (function() {
     var bgswitchInteval = 0;
     
     e_.Start = function() {
-        sound.ReplayBGM();
+        sound.PlayEndMusic();
         $('#usetime').text(beat.timer.use+'秒');
         $('#defeat').text( beat.defeat(beat.timer.use) );
         
