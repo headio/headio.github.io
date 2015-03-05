@@ -502,7 +502,8 @@ var beat_end = (function() {
     
     e_.Start = function() {
         sound.PlayEndMusic();
-        document.title = "我使用了" + beat.timer.use + "秒三杀了老板，不服来战！";
+        document.title = "天哪，你只用了" + beat.timer.use + "秒三杀老板，打败了" +
+            beat.defeat(beat.timer.use) + "的玩家！暴打老板，就是现在！";
         $('#usetime').text(beat.timer.use+'秒');
         $('#defeat').text( beat.defeat(beat.timer.use) );
         
