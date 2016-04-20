@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script type="text/javascript" src="./qwebchannel.js"></script>
+        <script type="text/javascript">
+            /*
+            注意：1 与之前提供的文档不同的是，这里使用全局回调函数的机制，每个单独的请求不再带回调
+                  2 全局的回调函数，通过bridge的connectCallback来挂载
+                  3 这里提供的三个接口，仅供做接口调用展示，并不是定型后的接口
+            调用步骤：
+            1 由createNativeBridge创建，异步得到bridge （该步骤可能后续根据每个平台不同，操作方法有少许区别）
+            2 bridge 提供两个接口 request, connectCallback
+            3 调用connectCallback挂载回调函数，用来接收请求的返回结果。connectCallback(function(requestId, cmd, args) {});
+            4 调用request发送请求。request(requestId, cmd, args)
+            5 如果请求有返回值，则会调用之前connectCallback挂载的回调，详见testCallback代码
+            */
+            function beginLesson() {
+                nativeBridge.request(0, "createCapturer", {
+                    "x":0, "y":0, "width":800,"height":600,"streamId":"demo_2016041502321_teacher"});
+            }
+            function playLesson() {
+                nativeBridge.request(0, "createPlayer", 
+                    {"viewX":0,"viewY":0,"viewWidth":800,"viewHeight":600,"streamId":"demo_2016041502321_teacher"});
+            }
+            function testCallback() {
+                nativeBridge.request(234, "testCallback", {});
+            }
+            window.onload = function () {
+                createNativeBridge(function(bridge) {
+                    window.nativeBridge = bridge;
+                    nativeBridge.registerCallback(function(id, cmd, args) {
+                        alert("id: " + id + " cmd: " + cmd);
+                    });
+                });
+            }
+        </script>
+        <style type="text/css">
+            html {
+                height: 100%;
+                width: 100%;
+            }
+            #button-area {
+                position: absolute;
+                top: 610px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>你好，这里可以做页面逻辑，比如登录等</h1>
+        <div id="button-area">
+        <button onclick="beginLesson()">老师上课</button>
+        <button onclick="playLesson()">学生听课</button>
+        <button onclick="testCallback()">回调测试</button>
+        </div>
+    </body>
+</html>
